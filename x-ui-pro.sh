@@ -346,7 +346,7 @@ server {
                 break;
         }
 	#Subscription Path (json/fragment)
-        location /${} {
+        location /${json_path} {
                 if (\$hack = 1) {return 404;}
                 proxy_redirect off;
                 proxy_set_header Host \$host;
@@ -355,7 +355,7 @@ server {
                 proxy_pass http://127.0.0.1:${sub_port};
                 break;
         }
-	location /${}/ {
+	location /${json_path}/ {
                 if (\$hack = 1) {return 404;}
                 proxy_redirect off;
                 proxy_set_header Host \$host;
@@ -494,7 +494,7 @@ server {
                 break;
         }
 	#Subscription Path (json/fragment)
-        location /${} {
+        location /${json_path} {
                 if (\$hack = 1) {return 404;}
                 proxy_redirect off;
                 proxy_set_header Host \$host;
@@ -503,7 +503,7 @@ server {
                 proxy_pass http://127.0.0.1:${sub_port};
                 break;
         }
-	location /${}/ {
+	location /${json_path}/ {
                 if (\$hack = 1) {return 404;}
                 proxy_redirect off;
                 proxy_set_header Host \$host;
