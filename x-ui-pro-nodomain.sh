@@ -27,8 +27,8 @@ get_port() {
 
 gen_random_string() {
     local length="$1"
-    local random_string=$(LC_ALL=C tr -dc 'a-zA-Z0-9' </dev/urandom | fold -w "$length" | head -n 1)
-    echo "$random_string"
+    head -c 4096 /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c "$length"
+    echo
 }
 check_free() {
 	local port=$1
