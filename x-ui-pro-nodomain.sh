@@ -873,6 +873,12 @@ arch() {
         *) echo -e "${green}Unsupported CPU architecture! ${plain}" && rm -f install.sh && exit 1 ;;
     esac
 }
+
+config_after_install() {
+            /usr/local/x-ui/x-ui setting -username "asdfasdf" -password "asdfasdf" -port "2096" -webBasePath "asdfasdf"    
+            /usr/local/x-ui/x-ui migrate
+}
+
 install_panel() {
 apt-get update && apt-get install -y -q wget curl tar tzdata
     cd /usr/local/
@@ -946,6 +952,7 @@ apt-get update && apt-get install -y -q wget curl tar tzdata
     # Update x-ui cli and se set permission
     mv -f /usr/bin/x-ui-temp /usr/bin/x-ui
     chmod +x /usr/bin/x-ui
+	config_after_install
     
     if [[ $release == "alpine" ]]; then
         wget --inet4-only -O /etc/init.d/x-ui https://raw.githubusercontent.com/MHSanaei/3x-ui/main/x-ui.rc
@@ -990,8 +997,6 @@ if systemctl is-active --quiet x-ui; then
 	x-ui restart
 else
     install_panel	
-
-	
 	UPDATE_XUIDB
 	if ! systemctl is-enabled --quiet x-ui; then
 		systemctl daemon-reload && systemctl enable x-ui.service
