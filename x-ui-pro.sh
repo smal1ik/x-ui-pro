@@ -510,7 +510,11 @@ else
 	msg_err "${domain} nginx config not exist!" && exit 1
 fi
 
-systemctl start nginx 
+if [[ $(nginx -t 2>&1 | grep -o 'successful') != "successful" ]]; then
+    msg_err "nginx config is not ok!" && exit 1
+else
+	systemctl start nginx 
+fi
 
 
 
@@ -944,7 +948,7 @@ apt-get update && apt-get install -y -q wget curl tar tzdata
         exit 1
     fi
     
-    # Stop x-ui service and remove old resources
+    # Stop x-ui service and  old resources
     if [[ -e /usr/local/x-ui/ ]]; then
         if [[ $release == "alpine" ]]; then
             rc-service x-ui stop
