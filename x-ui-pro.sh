@@ -93,8 +93,8 @@ done
 UNINSTALL_XUI(){
 	printf 'y\n' | x-ui uninstall
 	rm -rf "/etc/x-ui/" "/usr/local/x-ui/" "/usr/bin/x-ui/"
-	$Pak -y remove nginx nginx-common nginx-core nginx-full nginx-module-geoip python3-certbot-nginx
-	$Pak -y purge nginx nginx-common nginx-core nginx-full nginx-module-geoip python3-certbot-nginx
+	$Pak -y remove nginx nginx-common nginx-core nginx-full python3-certbot-nginx
+	$Pak -y purge nginx nginx-common nginx-core nginx-full python3-certbot-nginx
 	$Pak -y autoremove
 	$Pak -y autoclean
 	rm -rf "/var/www/html/" "/etc/nginx/" "/usr/share/nginx/" 
@@ -164,7 +164,7 @@ if [[ ${INSTALL} == *"y"* ]]; then
 
 	$Pak -y update
 
-	$Pak -y install curl wget jq bash sudo nginx-full nginx-module-geoip certbot python3-certbot-nginx sqlite3 ufw
+	$Pak -y install curl wget jq bash sudo nginx-full certbot python3-certbot-nginx sqlite3 ufw
 
 	systemctl daemon-reload && systemctl enable --now nginx
 fi
