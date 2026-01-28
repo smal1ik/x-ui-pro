@@ -15,9 +15,9 @@ systemctl stop x-ui
 rm -rf /etc/systemd/system/x-ui.service
 rm -rf /usr/local/x-ui
 rm -rf /etc/x-ui
-rm -rf /etc/nginx/sites-enabled/*
-rm -rf /etc/nginx/sites-available/*
-rm -rf /etc/nginx/stream-enabled/*
+# rm -rf /etc/nginx/sites-enabled/*
+# rm -rf /etc/nginx/sites-available/*
+# rm -rf /etc/nginx/stream-enabled/*
 
 
 ##################################generate ports and paths#############################################################
