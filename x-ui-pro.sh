@@ -510,11 +510,8 @@ else
 	msg_err "${domain} nginx config not exist!" && exit 1
 fi
 
-if [[ $(nginx -t 2>&1 | grep -o 'successful') != "successful" ]]; then
-    msg_err "nginx config is not ok!" && exit 1
-else
-	systemctl start nginx 
-fi
+systemctl start nginx 
+
 
 
 ##############################generate uri's###########################################################
